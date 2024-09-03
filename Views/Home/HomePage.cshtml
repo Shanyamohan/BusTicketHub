@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+      
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Space out left and right sections */
+            position: fixed;
+            width: 97%;
+            background-color: #f8f9fa;
+            padding: 10px;
+          
+           
+        }
+
+      
+
+        .header-center {
+            flex: 1;
+            display: flex;
+            align-items: center; /* Vertically center items */
+            justify-content: center; /* Horizontally center items */
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            padding : 20px;
+        }
+
+            .header-left img, .header-right img {
+                margin: 0 10px;
+            }
+
+        .button-style {
+            font-size: 15px;
+            padding: 10px 20px;
+            color: white;
+            background-color: mediumpurple;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline from link */
+            display: inline-block; /* Aligns the anchor tag like a button */
+            text-align: center; /* Center text inside the anchor tag */
+        }
+
+            .button-style:hover {
+                background-color: darkblue;
+                font-size:20px;
+            }
+
+        #welcome {
+            margin-left: 20px; /* Space between the image and text */
+            font-size: 24px; /* Font size for the welcome text */
+            color: black; /* Text color */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        
+            <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/menu-bar-1515514-1283116.png" height="100px" width="100px" alt="Menu" />
+      
+        <div class="header-center">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDSB5WEdqXmt_geN8Kuw4Orjw8wuPbUyHnKg&s" height="100px" width="200px" alt="Travel Logo" />
+            <div id="welcome">WELCOME</div>
+        </div>
+        <div class="header-right">
+            <a href="/Home/Index" class="button-style">REGISTER</a>
+            
+        </div>
+        <div class="header-right">
+            <a href="/Home/Login" class="button-style">LOGIN</a>
+
+        </div>
+    </header>
+    <main>
+        <!-- Main content goes here -->
+    </main>
+</body>
+</html>

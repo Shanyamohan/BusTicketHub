@@ -1,0 +1,114 @@
+﻿@model Demo2.Models.Customer;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Button</title>
+    <style>
+        /* styles.css */
+        body {
+            display: flex;
+            justify-content: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            font-weight: bolder;
+            background-image: url("https://www.jatri.co/_nuxt/jari-ticket-bg-img.9f66e4c7.svg");
+        }
+
+        input {
+            width: 150px;
+            height: 30px;
+            boder: 2px solid black;
+        }
+
+            input:hover {
+                cursor: pointer;
+            }
+
+            input:focus {
+                color: black;
+                background-color: aliceblue;
+            }
+
+        .Register {
+            
+            width: 500px;
+            HEIGHT: 350px;
+            background-color: #E7F5FE;
+            color: black; /* Text color for readability */
+            padding: 50px;
+            border-radius: 40px; /* Rounded corners for a cleaner look */
+            border: 3px solid black;
+            margin-top:100px;
+            margin-bottom:100px;
+            justify-content: center; /* Center horizontally */
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            justify-content: center;
+        }
+
+        .animated-button {
+            background-color: skyblue;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+            .animated-button:hover {
+                background-color: powderblue;
+                transform: scale(1.1);
+            }
+
+            .animated-button:active {
+                background-color: powderblue;
+                transform: scale(1.05);
+            }
+
+    </style>
+</head>
+<body>
+    <center>
+        
+            <h1>REGISTER</h1>
+            <form asp-controller="Home" asp-action="Index1" method="post">
+            <div class="Register">
+
+             Name:
+                    <input type="text" asp-for="name" /><br /><br /><br />
+                   
+                
+
+                
+                   Email ID:
+                    <input type="email" asp-for="email" /><br /><br /><br />
+                  
+              
+Phone Number:
+                    <input type="text" asp-for="phone" /><br /><br /><br />
+               
+               
+                   Password:
+                    <input type="password" asp-for="password" /><br /><br /><br />
+        </div>
+              
+                   
+               
+            
+
+
+       
+        
+        <button type="submit" class="animated-button">REGISTER</button>
+        </form>
+    </center>
+</body>
+</html>
