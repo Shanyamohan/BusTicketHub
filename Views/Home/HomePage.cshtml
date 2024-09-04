@@ -2,86 +2,104 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="C:\Users\shanyam\source\repos\Demo2\BusTicketHub\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css">
+   
+
     <title>Welcome</title>
+
     <style>
-      
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between; /* Space out left and right sections */
-            position: fixed;
-            width: 97%;
-            background-color: #f8f9fa;
-            padding: 10px;
-          
+        body {
+            margin: 0;
            
+            box-sizing: border-box;
         }
 
-      
-
-        .header-center {
-            flex: 1;
-            display: flex;
-            align-items: center; /* Vertically center items */
-            justify-content: center; /* Horizontally center items */
+        header {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr; 
+            gap: 10px; 
+            align-items: center; 
+            padding: 10px; 
+            background-color: #f4f4f4; 
+            width: 100%;
+        position:fixed
+            margin: 0 auto; 
+            grid-template-areas:
+                "nav logo button"; 
         }
 
-        .header-right {
+        #nav {
+            grid-area: nav; 
+        
             display: flex;
+           
+          
+        }
+
+        #logo {
+            grid-area: logo; 
+            display: flex;
+            justify-content: center;
             align-items: center;
-            padding : 20px;
+            gap: 10px; 
+
+            text-align: center; 
         }
 
-            .header-left img, .header-right img {
-                margin: 0 10px;
-            }
+        #button {
+            grid-area: button;
+           
+            display: flex;
+            gap: 20px; 
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
 
         .button-style {
-            font-size: 15px;
-            padding: 10px 20px;
-            color: white;
+            text-decoration: none;
+           margin-right:10px;
+            color: black;
             background-color: mediumpurple;
-            border: none;
+            padding: 10px 20px;
             border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none; /* Remove underline from link */
-            display: inline-block; /* Aligns the anchor tag like a button */
-            text-align: center; /* Center text inside the anchor tag */
+            font-weight: bold;
+            text-align: center;
         }
 
             .button-style:hover {
-                background-color: darkblue;
-                font-size:20px;
+                background-color: #0056b3;
             }
 
-        #welcome {
-            margin-left: 20px; /* Space between the image and text */
-            font-size: 24px; /* Font size for the welcome text */
-            color: black; /* Text color */
+        
+
+        main {
+            padding: 20px;
         }
     </style>
 </head>
 <body>
     <header>
-        
-            <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/menu-bar-1515514-1283116.png" height="100px" width="100px" alt="Menu" />
-      
-        <div class="header-center">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDSB5WEdqXmt_geN8Kuw4Orjw8wuPbUyHnKg&s" height="100px" width="200px" alt="Travel Logo" />
-            <div id="welcome">WELCOME</div>
+        <div id="nav">
+            <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/menu-bar-1515514-1283116.png" height="100" width="100" alt="Menu" />
         </div>
-        <div class="header-right">
-            <a href="/Home/Index" class="button-style">REGISTER</a>
-            
-        </div>
-        <div class="header-right">
-            <a href="/Home/Login" class="button-style">LOGIN</a>
 
+        <div id="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDSB5WEdqXmt_geN8Kuw4Orjw8wuPbUyHnKg&s" height="100" width="200" alt="Travel Logo" />
+            <h2>WELCOME</h2>
+        </div>
+
+        <div id="button">
+            <a href="/Home/Index" class="button-style">REGISTER</a>
+            <a href="/Home/Login" class="button-style">LOGIN</a>
         </div>
     </header>
     <main>
-        <!-- Main content goes here -->
+        
     </main>
 </body>
 </html>

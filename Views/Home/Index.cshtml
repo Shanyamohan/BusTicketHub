@@ -1,114 +1,137 @@
-﻿@model Demo2.Models.Customer;
+﻿@model Demo2.Models.Customer
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Button</title>
+    <title>Registration</title>
     <style>
         /* styles.css */
         body {
-            display: flex;
-            justify-content: center;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 20px;
-            font-weight: bolder;
-            background-image: url("https://www.jatri.co/_nuxt/jari-ticket-bg-img.9f66e4c7.svg");
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            font-weight: normal;
+            overflow: hidden; /* Prevents scrolling */
+            color: #333; /* Neutral text color */
+            color: white;
         }
 
+        .bg-img {
+            background-image: url("https://t3.ftcdn.net/jpg/07/80/28/02/360_F_780280283_px55r99HxNSvCdLgm8dtw3otS8L5KMZw.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            position: fixed; /* Ensures it covers the viewport */
+            width: 100%;
+            z-index: -1; /* Place it behind other content */
+            filter: blur(5px);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .Register {
+           /* Background for the form */
+            border-radius: 10px; /* Rounded corners */
+            border: 4px solid  darkgoldenrod;
+             /* Light border */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            padding: 30px 30px 30px 30px;
+            border:20px;
+            width: 100%;
+            max-width: 800px; /* Maximum width for the form */
+            text-align: left; /* Align text to the left */
+            
+        }
+
+            .Register h1 {
+                margin-top: 0;
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .Register label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: bold;
+            }
+
         input {
-            width: 150px;
+            width: calc(100% - 20px);
             height: 30px;
-            boder: 2px solid black;
+           
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-size: 16px;
         }
 
             input:hover {
+                border-color: #999;
                 cursor: pointer;
             }
 
             input:focus {
-                color: black;
-                background-color: aliceblue;
+                border-color: whitesmoke;
+                background-color: #f0f8ff;
+                outline: none;
             }
 
-        .Register {
-            
-            width: 500px;
-            HEIGHT: 350px;
-            background-color: #E7F5FE;
-            color: black; /* Text color for readability */
-            padding: 50px;
-            border-radius: 40px; /* Rounded corners for a cleaner look */
-            border: 3px solid black;
-            margin-top:100px;
-            margin-bottom:100px;
-            justify-content: center; /* Center horizontally */
-            align-items: center;
-        }
-
-        .container {
-            text-align: center;
-            justify-content: center;
-        }
-
         .animated-button {
-            background-color: skyblue;
+            background-color: darkgoldenrod;
             color: black;
-            border: none;
+          
             border-radius: 5px;
-            padding: 15px 30px;
+            padding: 15px 25px;
             font-size: 16px;
             cursor: pointer;
             outline: none;
             transition: transform 0.3s ease, background-color 0.3s ease;
+            display: block;
+            width: 100%;
         }
 
             .animated-button:hover {
-                background-color: powderblue;
-                transform: scale(1.1);
-            }
-
-            .animated-button:active {
-                background-color: powderblue;
+                background-color: darkgoldenrod;
                 transform: scale(1.05);
             }
 
+            .animated-button:active {
+                background-color: darkgoldenrod;
+                transform: scale(1);
+            }
     </style>
 </head>
 <body>
-    <center>
-        
-            <h1>REGISTER</h1>
+    <div class="bg-img"></div>
+    <div class="container">
+        <div class="Register">
+            <center> <h1>Register</h1></center>
+           
             <form asp-controller="Home" asp-action="Index1" method="post">
-            <div class="Register">
+                <label for="name">Name:</label>
+                <input type="text" id="name" asp-for="name" /><br />
 
-             Name:
-                    <input type="text" asp-for="name" /><br /><br /><br />
-                   
-                
+                <label for="email">Email ID:</label>
+                <input type="email" id="email" asp-for="email" /><br />
 
-                
-                   Email ID:
-                    <input type="email" asp-for="email" /><br /><br /><br />
-                  
-              
-Phone Number:
-                    <input type="text" asp-for="phone" /><br /><br /><br />
-               
-               
-                   Password:
-                    <input type="password" asp-for="password" /><br /><br /><br />
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" asp-for="phone" /><br />
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" asp-for="password" /><br />
+                <br /><br />
+                <button type="submit" class="animated-button">Register</button>
+            </form>
         </div>
-              
-                   
-               
-            
-
-
-       
-        
-        <button type="submit" class="animated-button">REGISTER</button>
-        </form>
-    </center>
+    </div>
 </body>
 </html>
