@@ -1,9 +1,93 @@
-﻿<html>
-    <body>
-        <div class="Loginbox">
-        <h4>
-            LOG IN
-        </h4>
+﻿@model BusTicketHub.Models.Login;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form1 {
+            display: grid;
+            grid-template-rows: auto auto auto;
+            gap: 20px;
+            background-color: yellowgreen;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px pink;
+            ;
+        }
+
+            .form1 h1 {
+                margin: 0;
+                font-size: 24px;
+                text-align: center;
+            }
+
+        .email, .password {
+            padding: 10px;
+            border-radius: 4px;
+            Margin: 20px;
+        }
+
+        .password {
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            height: 30px;
+        }
+
+            input[type="text"] :hover {
+            }
+
+        .button1 {
+            text-align: center;
+        }
+
+        .submit {
+            padding: 10px 20px;
+            background-color: deepskyblue;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .submit:hover {
+                background-color: dodgerblue;
+            }
+    </style>
+</head>
+<body>
+    <div class="form1">
+        <h1>LOG IN</h1>
+        <form asp-action="LoginVarifcation" method="post">
+            <div class="email">
+               Phone Number:
+                <input type="text" class="phone" placeholder="Enter your phone" asp-for="phone">
+            </div>
+            <div class="password">
+                Password:
+                <input type="text" class="password" placeholder="Enter your password" asp-for="password">
+            </div>
+            <div class="button1">
+                <button type="submit" class="submit">Login</button>
+            </div>
+        </form>
     </div>
-    </body>
+</body>
 </html>

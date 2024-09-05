@@ -8,7 +8,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.Use((ctx, next) =>
+{
+    var headers = ctx.Response.Headers;
 
+    headers.Add("Developed-by", "OJCommerce");
+
+    return next();
+});
+app.UseRouting();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

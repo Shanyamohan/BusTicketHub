@@ -4,12 +4,39 @@ using System.Diagnostics;
 using System.Reflection;
 using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Authorization;
+using BusTicketHub.Models;
 namespace Demo2.Controllers
 {
+
     public class HomeController : Controller
     {
         public readonly string _conStr = "Server=192.168.0.23,1427;Initial Catalog=interns;Integrated Security=False;user id=interns;password=Wel#123@Team;TrustServerCertificate=True;";
-       
+        [HttpPost]
+        public IActionResult LoginVarifcation(Login login)
+        {
+            using (SqlConnection con = new SqlConnection(_conStr))
+            {
+                con.Open();
+                string cmdText = "SELECT COUNT(*) FROM Bus_Customer_Registration WHERE phone_no = @PhoneNo AND Password = @Password";
+
+                using (SqlCommand cmd = new SqlCommand(cmdText, con))
+                {
+                    cmd.Parameters.AddWithValue("@PhoneNo", login.phone);
+                    cmd.Parameters.AddWithValue("@Password", login.password);
+
+                    int result = (int)cmd.ExecuteScalar();
+
+                    if (result > 0)
+                    {
+                        return Ok(); // Or any appropriate action
+                    }
+                }
+            }
+
+            // If no match is found, redirect to HomePage
+            return RedirectToAction("HomePage");
+
+        }
         public IActionResult Index()
         {
             return View();
@@ -58,12 +85,12 @@ namespace Demo2.Controllers
                 }
                 catch (Exception ex)
                 {
-                    
+
                     ModelState.AddModelError("", $"An error occurred: {ex.Message}");
                 }
             }
 
-          
+
             return View(model);
         }
 
@@ -71,5 +98,7 @@ namespace Demo2.Controllers
         {
             return View();
         }
+       
+
     }
 }
