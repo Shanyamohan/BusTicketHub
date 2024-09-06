@@ -1,34 +1,76 @@
 using Demo2.Models;
+
+using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Reflection;
 using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Authorization;
 using BusTicketHub.Models;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using System.Text;
+
+
 namespace Demo2.Controllers
 {
-
+    
     public class HomeController : Controller
     {
+        private readonly IConfiguration _configuration;
+
+        public HomeController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         public readonly string _conStr = "Server=192.168.0.23,1427;Initial Catalog=interns;Integrated Security=False;user id=interns;password=Wel#123@Team;TrustServerCertificate=True;";
         [HttpPost]
+        
         public IActionResult LoginVarifcation(Login login)
         {
+          
+
             using (SqlConnection con = new SqlConnection(_conStr))
             {
                 con.Open();
-                string cmdText = "SELECT COUNT(*) FROM Bus_Customer_Registration WHERE phone_no = @PhoneNo AND Password = @Password";
+                string cmdText = "SELECT * FROM Bus_Customer_Registration WHERE phone_no = @PhoneNo AND Password = @Password";
 
                 using (SqlCommand cmd = new SqlCommand(cmdText, con))
                 {
                     cmd.Parameters.AddWithValue("@PhoneNo", login.phone);
                     cmd.Parameters.AddWithValue("@Password", login.password);
 
-                    int result = (int)cmd.ExecuteScalar();
+                    var result = cmd.ExecuteScalar();
 
-                    if (result > 0)
+                    if (result!=null)
                     {
-                        return Ok(); // Or any appropriate action
+                        var tokenHandler = new JwtSecurityTokenHandler();
+                        var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
+                        var tokenDescriptor = new SecurityTokenDescriptor
+                        {
+                            Subject = new ClaimsIdentity(new Claim[]
+                            {
+                new Claim(ClaimTypes.Name,login.phone )
+                            }),
+                            Expires = DateTime.UtcNow.AddHours(1),
+                            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
+                            Issuer = _configuration["Jwt:Issuer"],
+                            Audience = _configuration["Jwt:Issuer"]
+                        };
+
+                        var token = tokenHandler.CreateToken(tokenDescriptor);
+                        var tokenString = tokenHandler.WriteToken(token);
+
+                        // Store the JWT token in a cookie
+                        Response.Cookies.Append("BusHubCookie", tokenString, new CookieOptions
+                        {
+                            HttpOnly = true,
+                            SameSite = SameSiteMode.Lax,
+                            Secure = true // Set to true if using HTTPS
+                        });
+
+                        return Ok(new { Token = tokenString });
                     }
                 }
             }
